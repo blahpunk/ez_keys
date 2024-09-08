@@ -39,7 +39,9 @@ def copy_to_clipboard():
 # Set up root window
 root = tk.Tk()
 root.title("Secure Key Generator")
-root.geometry("400x400")  # Compact size for better visibility
+
+# Explicit window size to fit all UI elements
+root.geometry("500x550")  # Adjusted to fit all elements without concealment
 
 # Set up styling
 root.configure(bg='#2c3e50')
