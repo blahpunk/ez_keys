@@ -39,7 +39,7 @@ def copy_to_clipboard():
 # Set up root window
 root = tk.Tk()
 root.title("Secure Key Generator")
-root.geometry("400x400")
+root.geometry("400x400")  # Compact size for better visibility
 
 # Set up styling
 root.configure(bg='#2c3e50')
@@ -48,7 +48,8 @@ style = {
     'padx': 5, 'pady': 5, 'bg': '#34495e'
 }
 button_style = {
-    'bg': '#16a085', 'fg': 'white', 'activebackground': '#1abc9c', 'font': ('Arial', 12, 'bold')
+    'bg': '#16a085', 'fg': 'white', 'activebackground': '#1abc9c', 'font': ('Arial', 12, 'bold'),
+    'padx': 5, 'pady': 5
 }
 highlight_style = {
     'highlightbackground': '#ecf0f1', 'highlightcolor': '#1abc9c', 'highlightthickness': 2, 'bd': 0
@@ -60,20 +61,20 @@ length_var = tk.StringVar(value="32")
 result_var = tk.StringVar()
 
 tk.Label(root, text="Select Key Type:", **style).pack(pady=5)
-tk.Radiobutton(root, text="Alphanumeric", variable=preset_var, value="alphanumeric", **style, selectcolor='#1abc9c').pack(anchor='w')
-tk.Radiobutton(root, text="Hexadecimal", variable=preset_var, value="hex", **style, selectcolor='#1abc9c').pack(anchor='w')
-tk.Radiobutton(root, text="UUID (Version 4)", variable=preset_var, value="uuid", **style, selectcolor='#1abc9c').pack(anchor='w')
-tk.Radiobutton(root, text="Base64", variable=preset_var, value="base64", **style, selectcolor='#1abc9c').pack(anchor='w')
-tk.Radiobutton(root, text="Binary", variable=preset_var, value="binary", **style, selectcolor='#1abc9c').pack(anchor='w')
-tk.Radiobutton(root, text="Numeric", variable=preset_var, value="numeric", **style, selectcolor='#1abc9c').pack(anchor='w')
+tk.Radiobutton(root, text="Alphanumeric", variable=preset_var, value="alphanumeric", **style, selectcolor='#1abc9c').pack(anchor='w', padx=15)
+tk.Radiobutton(root, text="Hexadecimal", variable=preset_var, value="hex", **style, selectcolor='#1abc9c').pack(anchor='w', padx=15)
+tk.Radiobutton(root, text="UUID (Version 4)", variable=preset_var, value="uuid", **style, selectcolor='#1abc9c').pack(anchor='w', padx=15)
+tk.Radiobutton(root, text="Base64", variable=preset_var, value="base64", **style, selectcolor='#1abc9c').pack(anchor='w', padx=15)
+tk.Radiobutton(root, text="Binary", variable=preset_var, value="binary", **style, selectcolor='#1abc9c').pack(anchor='w', padx=15)
+tk.Radiobutton(root, text="Numeric", variable=preset_var, value="numeric", **style, selectcolor='#1abc9c').pack(anchor='w', padx=15)
 
 tk.Label(root, text="Key Length (for applicable types):", **style).pack(pady=5)
-tk.Entry(root, textvariable=length_var, width=10, **highlight_style).pack()
+tk.Entry(root, textvariable=length_var, width=10, **highlight_style).pack(pady=5)
 
 tk.Button(root, text="Generate Key", command=on_generate, **button_style).pack(pady=10)
 
 tk.Label(root, text="Generated Key:", **style).pack(pady=5)
-tk.Entry(root, textvariable=result_var, width=40, **highlight_style).pack()
+tk.Entry(root, textvariable=result_var, width=40, **highlight_style).pack(pady=5)
 
 tk.Button(root, text="Copy to Clipboard", command=copy_to_clipboard, **button_style).pack(pady=10)
 
