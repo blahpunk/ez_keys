@@ -3,7 +3,20 @@ from tkinter import messagebox
 import secrets
 import uuid
 import base64
+import os
+import sys
 
+# Function to get correct path for PyInstaller-extracted files
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and PyInstaller """
+    try:
+        base_path = sys._MEIPASS  # Temporary folder used by PyInstaller
+    except AttributeError:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+# Function to generate keys
 def generate_key(preset, length):
     if preset == "alphanumeric":
         return ''.join(secrets.choice('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') for _ in range(length))
@@ -40,8 +53,12 @@ def copy_to_clipboard():
 root = tk.Tk()
 root.title("Secure Key Generator")
 
-# Explicit window size to fit all UI elements
-root.geometry("500x550")  # Adjusted to fit all elements without concealment
+# Set application icon
+icon_path = resource_path("icon.ico")
+root.iconbitmap(icon_path)
+
+# Explicit window size
+root.geometry("500x550")
 
 # Set up styling
 root.configure(bg='#2c3e50')
